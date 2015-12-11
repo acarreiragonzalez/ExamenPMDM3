@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
+import android.widget.Toast;
 
 
 /**
@@ -99,6 +100,7 @@ public class ItemListActivity extends AppCompatActivity
 
     @Override
     public void oK(String link) {
-
+        //Co metodo makeText da clase Toast mandamos un mensaje instantaneo o executarse o metodo oK que nos mandará dita mensaxe
+        Toast.makeText(getApplicationContext(), link, Toast.LENGTH_LONG).show();
     }
 }
