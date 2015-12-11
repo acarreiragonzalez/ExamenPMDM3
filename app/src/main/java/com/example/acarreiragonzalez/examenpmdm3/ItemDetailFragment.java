@@ -1,12 +1,15 @@
 package com.example.acarreiragonzalez.examenpmdm3;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.acarreiragonzalez.examenpmdm3.dummy.DummyContent;
@@ -57,13 +60,38 @@ public class ItemDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
+
+
             ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.details);
         }
+//El boton eliminará el contenido remplazándose por un texto sin nada, o en caso de estar port, el activity se cerrará
+        //En el caso de algunhas versiones de Android el metodo isInLayout puede dar problemas de renderizacion
+                Button eliminar = (Button) rootView.findViewById(R.id.eliminar);
+                eliminar.setOnClickListener(new View.OnClickListener() {
+                        @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+                        @Override
+                        public void onClick(View v) {
+                               //se remplaza el texto por nada
+                                        ((TextView) v.findViewById(R.id.item_detail)).setText("");
+                               //se cierra y finaliza el activity
+                                        if (rootView == null || !rootView.isInLayout()) {
+                                        getActivity().finish();
+                                        }
+                                       
+                            }
+                    });
 
         return rootView;
     }
-}
+
+    }
+
+
+
+
+
+
