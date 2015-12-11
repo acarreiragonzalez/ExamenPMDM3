@@ -26,7 +26,8 @@ import android.view.View;
  * to listen for item selections.
  */
 public class ItemListActivity extends AppCompatActivity
-        implements ItemListFragment.Callbacks {
+    //Implementase o metodo OnItemSelectedlistener da clase Item detail fragment nesta clase
+        implements ItemListFragment.Callbacks,ItemDetailFragment.OnItemSelectedListener {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -94,5 +95,10 @@ public class ItemListActivity extends AppCompatActivity
             detailIntent.putExtra(ItemDetailFragment.ARG_ITEM_ID, id);
             startActivity(detailIntent);
         }
+    }
+
+    @Override
+    public void oK(String link) {
+
     }
 }

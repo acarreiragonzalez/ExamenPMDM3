@@ -21,6 +21,9 @@ import com.example.acarreiragonzalez.examenpmdm3.dummy.DummyContent;
  * on handsets.
  */
 public class ItemDetailFragment extends Fragment {
+    OnItemSelectedListener listener;
+
+
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -81,12 +84,28 @@ public class ItemDetailFragment extends Fragment {
                                         if (rootView == null || !rootView.isInLayout()) {
                                         getActivity().finish();
                                         }
-                                       
+
                             }
                     });
-
+listener.oK("OK");
         return rootView;
     }
+    //Creamos una interfaz con public interface e o metodo onAttach
+    public interface OnItemSelectedListener {
+                public void oK(String link);
+            }
+
+                @Override
+
+        public void onAttach(Activity context) {
+                super.onAttach(context);
+                if (context instanceof OnItemSelectedListener) {
+                    listener = (OnItemSelectedListener) context;
+                    } else {
+                        throw new ClassCastException(context.toString()
+                                        + " must implement MyListFragment.OnItemSelectedListener");
+                    }
+            }
 
     }
 
